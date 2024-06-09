@@ -1,29 +1,58 @@
 # Loja de Jogos PS4 - Aplicação Swing
-Esta aplicação Swing em Java simula uma loja online de jogos para PS4. Ela permite que o usuário:
-Visualize jogos: A tela principal exibe uma vitrine com 4 jogos, cada um com imagem, nome e preço.
-Adicione jogos ao carrinho: Um botão "Adicionar ao Carrinho" está presente em cada jogo da vitrine. Ao clicar, o jogo é adicionado a uma lista de carrinho de compras.
-Visualize o carrinho: Um botão "Carrinho" na tela principal exibe os jogos adicionados ao carrinho, o total da compra e um botão para remover todos os itens.
-Voltar para a tela principal: Um botão "Voltar" na tela do carrinho permite que o usuário retorne à vitrine de jogos.
-Funcionalidades implementadas:
-Vitrine de jogos: Exibe jogos com imagens, nomes e preços.
-Carrinho de compras: Armazena os jogos selecionados pelo usuário.
-Botões "Adicionar ao Carrinho": Adicionam jogos ao carrinho de compras.
-Tela do carrinho: Exibe os itens do carrinho, o total e um botão para remover todos os itens.
-Botão "Voltar": Permite que o usuário retorne à tela principal.
-Atualização do botão "Carrinho": O texto do botão "Carrinho" na tela principal é atualizado dinamicamente com o nome dos jogos adicionados.
-Como executar a aplicação:
-Certifique-se de ter o Java Development Kit (JDK) instalado.
-Compile o código fonte usando o comando javac Home.java Carrinho.java Produto.java TelaPagamento.java Login.java (substitua TelaPagamento e Login pelos nomes das suas classes).
-Execute a aplicação com o comando java Home (ou o nome da sua classe principal).
+Esta aplicação Swing em Java, desenvolvida para fins educacionais, simula uma loja online de jogos para PS4, demonstrando conceitos de interface gráfica e interação com o usuário.
+Projeto feito por: Richard Luiz e Felipe Araujo
+
+Funcionalidades:
+Vitrine de Jogos:
+Exibe uma vitrine com quatro jogos, cada um com imagem, nome e preço.
+Permite a visualização de informações básicas dos jogos.
+
+Carrinho de Compras:
+Permite que o usuário adicione jogos ao carrinho de compras.
+Exibe os jogos selecionados pelo usuário, o total da compra e um botão para remover todos os itens.
+Inclui um botão "Voltar" para retornar à vitrine de jogos.
+Botões Interativos:
+"Adicionar ao Carrinho": Adiciona jogos à lista de compras.
+"Comprar": (Funcionalidade a ser implementada) Finaliza a compra dos jogos selecionados.
+"Remover Todos os Itens": Limpa a lista de compras do carrinho.
+"Voltar": Retorna o usuário à tela principal da loja.
+Atualização Dinâmica:
+O texto do botão "Carrinho" na tela principal é atualizado dinamicamente, mostrando os nomes dos jogos adicionados à lista de compras.
+
+Benefícios:
+Demonstração de Conceitos: A aplicação ilustra conceitos importantes de desenvolvimento de interface gráfica em Java Swing, como:
+Criação de janelas, painéis e componentes.
+Layout de elementos gráficos (BorderLayout, GridLayout).
+Uso de ImageIcon para exibir imagens.
+ActionListener para lidar com eventos de clique em botões.
+JList para exibir listas de itens.
+Base para Projetos Futuramente: Serve como base para projetos mais complexos, como uma loja online completa, com:
+Opções de pagamento e entrega.
+Gerenciamento de estoque.
+Login de usuários.
+
+
+Como Executar:
+Pré-requisitos:
+Ter o Java Development Kit (JDK) instalado.
+
+Compilação:
+Compile o código fonte usando o comando javac Home.java Carrinho.java Produto.java TelaPagamento.java Login.java.
+
+Execução:
+Execute a aplicação com o comando java Home.
+
 Observações:
-O código fonte inclui exemplos de classes Produto, TelaPagamento e Login.
+O código fonte inclui exemplos de classes Produto, TelaPagamento e Login para ilustrar o conceito.
 A aplicação usa imagens de exemplo. Você pode substituir essas imagens pelas imagens dos seus jogos.
-O código pode ser expandido com mais funcionalidades, como:
-Implementar um botão "Comprar" para finalizar a compra.
+Para expandir a aplicação, adicione funcionalidades como:
+Implementação de um botão "Comprar" para finalizar a compra.
 Adicionar opções de pagamento e entrega.
 Permitir que o usuário visualize detalhes de cada jogo.
 Salvar o carrinho de compras em um arquivo ou banco de dados.
-Para contribuir com este projeto:
-Faça o fork do repositório.
+
+Contribuições:
+Este projeto está aberto a contribuições.
+Faça um fork do repositório.
 Faça as alterações desejadas.
-Crie um pull request.
+Crie um pull request para que as alterações sejam revisadas.
