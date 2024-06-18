@@ -1,8 +1,8 @@
 # **Loja de Jogos PS4**
 
 <p align="center">
-  <img src="E:\Trabalho LP E POO\src\Imagem\LogoGames.jpeg
-" alt="Logo" width="200">
+ <img src="E:\Trabalho LP E POO\src\Imagem\LogoGames.jpeg" alt="Logo" width="200">
+
 </p>
 
 > **Aplicação Java com Interface Gráfica (Swing) e Banco de Dados SQLite.**
