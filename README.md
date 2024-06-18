@@ -1,7 +1,7 @@
 # **Loja de Jogos PS4**
 
 <p align="center">
-  <img src="./assets/![WhatsApp Image 2024-06-18 at 16 39 30](https://github.com/Richardluiz/LP-POO/assets/80009434/422fc024-73c5-4250-a5c0-891bf9ede565)
+  <img src="E:\Trabalho LP E POO\src\Imagem\LogoGames.jpeg
 " alt="Logo" width="200">
 </p>
 
