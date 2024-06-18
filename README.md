@@ -1,7 +1,6 @@
 # Loja de Jogos PS4 - Aplicação Swing
         
-        ![Create Logo de  0981e827-a8f6-4424-ac57-cbb3cd478e79](https://github.com/Richardluiz/LP-POO/assets/80009434/2fe41b6e-e5f3-4057-b657-56d132bcaf00)
-
+    C:\Users\user\Downloads\Create Logo de  0981e827-a8f6-4424-ac57-cbb3cd478e79.png
 Esta aplicação Swing em Java, desenvolvida para fins educacionais, simula uma loja online de jogos para PS4, demonstrando conceitos de interface gráfica e interação com o usuário.
 Projeto feito por: Richard Luiz e Felipe Araujo
 
