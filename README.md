@@ -1,7 +1,8 @@
 # **Loja de Jogos PS4**
 
 <p align="center">
-  <img src="./path/to/logo.png" alt="Logo" width="200">
+  <img src="./assets/![WhatsApp Image 2024-06-18 at 16 39 30](https://github.com/Richardluiz/LP-POO/assets/80009434/422fc024-73c5-4250-a5c0-891bf9ede565)
+" alt="Logo" width="200">
 </p>
 
 > **Aplicação Java com Interface Gráfica (Swing) e Banco de Dados SQLite.**
