@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,25 +39,24 @@ public class Home extends JFrame {
         JLabel labeljogo3 = new JLabel(imagemJogo3);
         JLabel labeljogo4 = new JLabel(imagemJogo4);
 
+        // Redimensiona as imagens para o tamanho desejado
         Image image1 = imagemJogo1.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH);
         Image imagem2 = imagemJogo2.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH);
         Image img3 = imagemJogo3.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH);
         Image imagen4 = imagemJogo4.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH);
 
-
+        // Cria novos Icones com as imagens redimensionadas
         ImageIcon imgRedimensionada = new ImageIcon(image1);
         JLabel Labeljogo1 = new JLabel(imgRedimensionada);
 
         ImageIcon imgRedimensionada2 = new ImageIcon(imagem2);
         JLabel Labeljogo2 = new JLabel(imgRedimensionada2);
 
-
         ImageIcon imgRedimensionada3 = new ImageIcon(img3);
         JLabel Labeljogo3 = new JLabel(imgRedimensionada3);
 
         ImageIcon imgRedimensionada4 = new ImageIcon(imagen4);
         JLabel Labeljogo4 = new JLabel(imgRedimensionada4);
-
 
         // Adicione informações (nome e preço) aos labels
         labeljogo1.setText("<html><center><h2>" + jogo1.getNome() + "</h2><br>R$" + jogo1.getPreco() + "</center></html>");
@@ -68,7 +69,6 @@ public class Home extends JFrame {
         vitrinePanel.add(Labeljogo2);
         vitrinePanel.add(Labeljogo3);
         vitrinePanel.add(Labeljogo4);
-
 
         // Crie um painel para cada jogo e adicione os botões "Comprar"
         JPanel panelJogo1 = new JPanel(new BorderLayout());
@@ -179,15 +179,19 @@ public class Home extends JFrame {
         panelJogo4.add(btnPanelJogo4, BorderLayout.SOUTH); // Adiciona o painel de botões ao painel do jogo
         vitrinePanel.add(panelJogo4); // Adicione o painel ao GridLayout
 
+        // Carrega o ícone do carrinho
+        ImageIcon iconeCarrinho = new ImageIcon(getClass().getResource("Imagem/Carrinho.png"));
+        // Redimensiona o ícone do carrinho
+        Image imageCarrinho = iconeCarrinho.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        iconeCarrinho = new ImageIcon(imageCarrinho);
 
-        ImageIcon icone = new ImageIcon(getClass().getResource("Imagem/Carrinho.png"));
-        Image image = icone.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Redimensiona a imagem
-        icone = new ImageIcon(image);
-        JLabel carrinhoIcon = new JLabel(icone);
+        // Cria um JLabel para exibir o ícone do carrinho
+        JLabel carrinhoIcon = new JLabel(iconeCarrinho);
         carrinhoIcon.setToolTipText("Ver Carrinho");
-        carrinhoIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+        // Adiciona um MouseListener para abrir a tela do carrinho ao clicar no ícone
+        carrinhoIcon.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(MouseEvent evt) {
                 if (evt.getClickCount() == 1) { // Clique simples
                     Carrinho carrinho = new Carrinho(carrinhoDeCompras); // Cria uma nova instância da tela Carrinho, passando o carrinho de compras
                     carrinho.setVisible(true); // Exibe a tela do Carrinho
@@ -195,25 +199,11 @@ public class Home extends JFrame {
             }
         });
 
-        // Painel para o ícone do carrinho (canto superior esquerdo)
-        JPanel iconPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        iconPanel.add(carrinhoIcon);
-        add(iconPanel, BorderLayout.NORTH); // Adiciona o painel ao topo da janela
+        // Cria um JPanel para o nome da loja e o ícone do carrinho
+        JPanel lojaPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Alinha os componentes à esquerda
 
-        // Painel para botões de navegação
-        JPanel botaoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Altera o layout do botaoPanel para FlowLayout à esquerda
-        btnCarrinho = new JButton("Carrinho");
-        btnCarrinho.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Abre a tela do carrinho
-                Carrinho carrinho = new Carrinho(carrinhoDeCompras);
-                carrinho.setVisible(true);
-                dispose(); // Fecha a tela Home
-            }
-        });
-        botaoPanel.add(btnCarrinho);
-
+        // Cria um JPanel para o botão Login e o ícone do carrinho
+        JPanel botaoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Alinha os componentes à esquerda
         btnLogin = new JButton("Login");
         btnLogin.addActionListener(new ActionListener() {
             @Override
@@ -225,9 +215,26 @@ public class Home extends JFrame {
             }
         });
         botaoPanel.add(btnLogin);
+        botaoPanel.add(carrinhoIcon); // Adiciona o ícone do carrinho ao painel
+        botaoPanel.add(new JLabel("Loja de Jogos PS4")); // Adiciona o nome da loja ao painel
 
+
+        btnCarrinho = new JButton("Carrinho");
+        btnCarrinho.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Abre a tela do carrinho
+                Carrinho carrinho = new Carrinho(carrinhoDeCompras);
+                carrinho.setVisible(true);
+                dispose(); // Fecha a tela Home
+            }
+        });
+
+
+        // Adiciona os painéis à janela
+        add(botaoPanel, BorderLayout.NORTH); // Adiciona o painel da loja no topo
         add(vitrinePanel, BorderLayout.CENTER);
-        add(botaoPanel, BorderLayout.NORTH); // Move o botaoPanel para o norte
+        add(btnCarrinho, BorderLayout.SOUTH); // Move o botaoPanel para o sul
 
         // Atualiza o texto do botão "Carrinho" quando um jogo é adicionado
         updateCarrinhoButton(); // Chama a função para atualizar o botão inicialmente
