@@ -1,12 +1,8 @@
-# **Loja de Jogos PS4**  ![WhatsApp Image 2024-06-18 at 16 39 30](https://github.com/Richardluiz/LP-POO/assets/80009434/53baf3ce-9e91-4ef0-802d-1a899269ae9f)
+# **Loja de Jogos PS4**
+
 <p align="center">
-  <img src="./path/to/logo.png" alt="Logo" width="200" height="200">
+  <img src="./path/to/logo.png" alt="Logo" width="200">
 </p>
-
-(![Create Logo de  0981e827-a8f6-4424-ac57-cbb3cd478e79](https://github.com/Richardluiz/LP-POO/assets/80009434/9851b8ca-e0df-4948-971e-70e089482a9b)
-)
-
-
 
 > **Aplicação Java com Interface Gráfica (Swing) e Banco de Dados SQLite.**
 
