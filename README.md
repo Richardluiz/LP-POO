@@ -1,7 +1,8 @@
 # **Loja de Jogos PS4**
 
 <p align="center">
- <img src="E:\Trabalho LP E POO\src\Imagem\LogoGames.jpeg" alt="Logo" width="200">
+ <img src="![LogoGames](https://github.com/Richardluiz/LP-POO/assets/80009434/0669e814-8d64-4a14-aa38-1fbe9d2fda56)
+" alt="Logo" width="200">
 
 </p>
 
