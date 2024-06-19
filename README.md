@@ -55,7 +55,7 @@ O código é dividido em várias classes:
    Execute o seguinte comando SQL no SQLite Database Browser (ou similar) para criar a tabela `users`:
 
     ```sql
- CREATE TABLE Pessoas (
+       CREATE TABLE Pessoas (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         Nome TEXT NOT NULL UNIQUE
     );
@@ -71,7 +71,6 @@ O código é dividido em várias classes:
         usuario_id INTEGER,
         UNIQUE("Nome"),
         FOREIGN KEY("usuario_id") REFERENCES "Pessoas"("id")
-   
     );
     ```
 
