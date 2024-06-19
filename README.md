@@ -1,10 +1,10 @@
 # **Loja de Jogos PS4**
 
-<p align="center">
- <img src="![LogoGames](https://github.com/Richardluiz/LP-POO/assets/80009434/0669e814-8d64-4a14-aa38-1fbe9d2fda56)
-" alt="Logo" width="200">
+[MALIKK](https://github.com/Richardluiz/LP-POO/assets/80009434/c3c22a87-d704-4df0-a54d-c7bfcc940fc3)
+…]()
+)
 
-</p>
+
 
 > **Aplicação Java com Interface Gráfica (Swing) e Banco de Dados SQLite.**
 
