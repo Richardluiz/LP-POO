@@ -1,8 +1,7 @@
 # **Loja de Jogos PS4**
 
-[MALIKK](https://github.com/Richardluiz/LP-POO/assets/80009434/c3c22a87-d704-4df0-a54d-c7bfcc940fc3)
-…]()
-)
+![MALIKK](https://github.com/Richardluiz/LP-POO/assets/80009434/0912e8c9-9cde-4943-991b-466488205def)
+
 
 
 
