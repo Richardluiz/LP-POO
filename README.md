@@ -71,7 +71,7 @@ O código é dividido em várias classes:
         usuario_id INTEGER,
         UNIQUE("Nome"),
         FOREIGN KEY("usuario_id") REFERENCES "Pessoas"("id")
-    );
+   
     );
     ```
 
