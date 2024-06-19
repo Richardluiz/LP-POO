@@ -54,8 +54,8 @@ O código é dividido em várias classes:
 3. **Crie a tabela `users`**:
    Execute o seguinte comando SQL no SQLite Database Browser (ou similar) para criar a tabela `users`:
 
-  ```sql
-  CREATE TABLE Pessoas (
+    ```sql
+ CREATE TABLE Pessoas (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         Nome TEXT NOT NULL UNIQUE
     );
@@ -72,6 +72,8 @@ O código é dividido em várias classes:
         UNIQUE("Nome"),
         FOREIGN KEY("usuario_id") REFERENCES "Pessoas"("id")
     );
+    );
+    ```
 
 4. **Compile e execute o código**:
    Compile e execute a classe `Login` para iniciar a aplicação.
