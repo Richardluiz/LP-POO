@@ -1,3 +1,10 @@
+
+
+import BancoDados.ConexaoBD;
+
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -11,10 +18,9 @@ public class Login extends JFrame {
     private JButton btnCadastrar;
     private JButton btnVoltar;
 
-    // Dados de conexão com o banco de dados
-    private static final String URL = "jdbc:sqlite:src/bd/BancodadosLoja.db"; // Caminho para o arquivo do banco de dados
-    private static final String USUARIO = "root"; // Usuário do banco de dados
-    private static final String SENHA = ""; // Senha do banco de dados
+    // Dados de conexão com o banco de dados (usando a classe ConexaoBD)
+    //private static final String URL = "jdbc:sqlite:src/bd/BancodadosLoja.db.sql"; // Caminho para o arquivo do banco de dados
+    // Não precisa mais definir URL, pois a classe ConexaoBD já define
 
     public Login() {
         setTitle("Loja de Jogos PS4 - Login");
@@ -22,7 +28,7 @@ public class Login extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(5, 1));
 
-        JLabel lblUsuario = new JLabel("Usuário:");
+        JLabel lblUsuario = new JLabel("Usuário (E-mail):"); // Mudar para "Usuário (E-mail)"
         txtUsuario = new JTextField();
         JLabel lblSenha = new JLabel("Senha:");
         txtSenha = new JPasswordField();
@@ -34,27 +40,41 @@ public class Login extends JFrame {
         btnEntrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String usuario = txtUsuario.getText();
+                String email = txtUsuario.getText(); // Usar "email" como nome da variável
                 String senha = new String(txtSenha.getPassword());
 
-                try (Connection conexao = DriverManager.getConnection(URL, USUARIO, SENHA);
-                     PreparedStatement stmt = conexao.prepareStatement("SELECT * FROM users WHERE email = ? AND senha = ?")) {
-                    stmt.setString(1, usuario);
-                    stmt.setString(2, senha);
-                    ResultSet resultado = stmt.executeQuery();
-                    if (resultado.next()) {
-                        System.out.println("Login realizado com sucesso!");
-                        // Aqui você pode adicionar a lógica para o que acontece após o login
-                        // Por exemplo, abrir a tela Home:
-                        Home home = new Home();
-                        home.setVisible(true);
-                        dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(Login.this, "Usuário ou senha inválidos!", "Erro de Login", JOptionPane.ERROR_MESSAGE);
+                try (Connection conexao = ConexaoBD.obterConexao()) {
+                    // Verifica se a conexão foi estabelecida com sucesso
+                    assert conexao != null;
+                    // Obter a conexão usando ConexaoBD
+                    try (PreparedStatement stmt = conexao.prepareStatement("SELECT * FROM Usuarios WHERE Email = ? AND Senha = ?")) {
+                        // Define os parâmetros da consulta
+                        stmt.setString(1, email);
+                        // Criptografar a senha antes de comparar com a senha do banco de dados
+                        String senhaCriptografada = gerarHash(senha);
+                        stmt.setString(2, senhaCriptografada);
+                        // Executa a consulta SQL
+                        ResultSet resultado = stmt.executeQuery();
+                        // Verifica se o login foi bem-sucedido
+                        if (resultado.next()) {
+                            System.out.println("Login realizado com sucesso!");
+                            // Abre a tela Home
+                            Home home = new Home();
+                            home.setVisible(true);
+                            // Fecha a tela de Login
+                            dispose();
+                        } else {
+                            // Exibe uma mensagem de erro caso as credenciais estejam incorretas
+                            JOptionPane.showMessageDialog(Login.this, "Usuário ou senha inválidos!", "Erro de Login", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
                 } catch (SQLException ex) {
+                    // Trata erros de SQL
                     System.err.println("Erro ao fazer login: " + ex.getMessage());
                     JOptionPane.showMessageDialog(Login.this, "Erro ao conectar ao banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
+                } finally {
+                    // Fecha a conexão com o banco de dados, mesmo que ocorra um erro
+                    ConexaoBD.fecharConexao();
                 }
             }
         });
@@ -73,9 +93,9 @@ public class Login extends JFrame {
         btnVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Home home = new Home();
-                home.setVisible(true);
-                dispose();
+                // Aqui, você precisa definir o que deve acontecer ao clicar em "Voltar"
+                // Por exemplo, você pode sair do programa ou voltar para outra tela
+                System.exit(0); // Sair do programa como exemplo
             }
         });
 
@@ -96,6 +116,24 @@ public class Login extends JFrame {
             }
         });
     }
+
+    // Função para gerar o hash da senha (SHA-256)
+    static String gerarHash(String senha) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(senha.getBytes("UTF-8"));
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
 
 // Classe para a tela de cadastro
@@ -108,10 +146,9 @@ class Cadastro extends JFrame {
     private JButton btnCadastrar;
     private JButton btnVoltar;
 
-    // Dados de conexão com o banco de dados
-    private static final String URL = "jdbc:sqlite:src/bd/BancodadosLoja.db"; // Caminho para o arquivo do banco de dados
-    private static final String USUARIO = "root"; // Usuário do banco de dados
-    private static final String SENHA = ""; // Senha do banco de dados
+    // Dados de conexão com o banco de dados (usando a classe ConexaoBD)
+    //private static final String URL = "jdbc:sqlite:src/bd/BancoDeDados.db"; // Caminho para o arquivo do banco de dados
+    // Não precisa mais definir URL, pois a classe ConexaoBD já define
 
     public Cadastro() {
         setTitle("Loja de Jogos PS4 - Cadastro");
@@ -144,44 +181,42 @@ class Cadastro extends JFrame {
                     String cpf = txtCPF.getText();
                     String senha = new String(txtSenha.getPassword());
 
-                    // Verificar se algum campo está vazio
+                    // Validação dos dados
                     if (nomeCompleto.isEmpty() || email.isEmpty() || cep.isEmpty() || cpf.isEmpty() || senha.isEmpty()) {
                         throw new IllegalArgumentException("Cadastro inválido: preencha todos os campos.");
                     }
+                    // Adicione mais validações para email, cpf, cep e senha aqui ...
 
                     // Lógica de cadastro (salve os dados do usuário em um banco de dados ou arquivo)
-                    try (Connection conexao = DriverManager.getConnection(URL, USUARIO, SENHA);
-                         PreparedStatement stmt = conexao.prepareStatement("INSERT INTO users (nome, email, senha, cep, cpf) VALUES (?, ?, ?, ?, ?)")) {
-                        stmt.setString(1, nomeCompleto);
-                        stmt.setString(2, email);
-                        stmt.setString(3, senha);
-                        stmt.setString(4, cep);
-                        stmt.setString(5, cpf);
-                        stmt.executeUpdate();
-                        JOptionPane.showMessageDialog(Cadastro.this, "Usuário cadastrado com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+                    try (Connection conexao = ConexaoBD.obterConexao()) {
+                        assert conexao != null;
+                        try (// Obter a conexão usando ConexaoBD
+                             PreparedStatement stmt = conexao.prepareStatement("INSERT INTO Usuarios (NomeCompleto, Email, CEP, CPF, Senha) VALUES (?, ?, ?, ?, ?)")) {
+                            stmt.setString(1, nomeCompleto);
+                            stmt.setString(2, email);
+                            // Criptografar a senha antes de inserir no banco de dados
+                            String senhaCriptografada = Login.gerarHash(senha); // Use a mesma função para gerar o hash da senha
+                            stmt.setString(3, senhaCriptografada);
+                            stmt.setString(4, cep);
+                            stmt.setString(5, cpf);
+                            stmt.executeUpdate();
+                            JOptionPane.showMessageDialog(Cadastro.this, "Usuário cadastrado com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
 
-                        // Após o cadastro, volta para a tela de Login
-                        Login login = new Login();
-                        login.setVisible(true);
-                        dispose();
+                            // Após o cadastro, volta para a tela de Login
+                            Login login = new Login();
+                            login.setVisible(true);
+                            dispose();
+                        }
                     } catch (SQLException ex) {
                         System.err.println("Erro ao cadastrar usuário: " + ex.getMessage());
-                        JOptionPane.showMessageDialog(Cadastro.this, "Erro ao cadastrar usuário.", "Erro", JOptionPane.ERROR_MESSAGE);
+                        // Exibir uma mensagem de erro mais específica para o usuário
+                        JOptionPane.showMessageDialog(Cadastro.this, "Erro ao cadastrar usuário: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (IllegalArgumentException ex) {
                     JOptionPane.showMessageDialog(Cadastro.this, ex.getMessage(), "Erro de Cadastro", JOptionPane.ERROR_MESSAGE);
+                } finally {
+                    ConexaoBD.fecharConexao(); // Fechar a conexão com o banco de dados
                 }
-            }
-        });
-
-        // Ação do botão "Voltar"
-        btnVoltar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Volta para a tela de login
-                Login login = new Login();
-                login.setVisible(true);
-                dispose();
             }
         });
 
