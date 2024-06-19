@@ -72,8 +72,6 @@ O código é dividido em várias classes:
         UNIQUE("Nome"),
         FOREIGN KEY("usuario_id") REFERENCES "Pessoas"("id")
     );
-    ```
-   
 
 4. **Compile e execute o código**:
    Compile e execute a classe `Login` para iniciar a aplicação.
