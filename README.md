@@ -11,7 +11,7 @@
 
 
 
-[![Video do site ](https://youtu.be/MFqCB2wHStI})
+[![Assistir o vídeo do funcionamento do site ]([https://img.youtube.com/vi/{VIDEO_ID}/0.jpg)](https://www.youtube.com/watch?v={VIDEO_ID}](https://youtu.be/MFqCB2wHStI))
 
 ## **Índice**
 
