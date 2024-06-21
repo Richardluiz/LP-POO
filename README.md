@@ -109,6 +109,10 @@ O código é dividido em várias classes:
 - A tela do carrinho exibe os jogos que o usuário adicionou.
 - Os usuários podem remover jogos do carrinho.
 - (Em desenvolvimento) A tela de pagamento ainda não está implementada.
+  
+
+### **Demonstração do projeto em Gif**
+[![Texto Alternativo](https://img.youtube.com/vi/iv6Xpvt3xwM/0.jpg)](https://youtu.be/iv6Xpvt3xwM "Clique para assistir ao vídeo!")
 
 ## **Próximos Passos**
 
