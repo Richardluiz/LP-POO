@@ -135,5 +135,5 @@ O código é dividido em várias classes:
 - Este código é um exemplo básico e pode ser expandido para incluir mais funcionalidades.
 - A segurança não é abordada neste código, e as credenciais de login não estão protegidas.
 - Você precisará ajustar o código de acordo com as suas necessidades específicas.
-- 
+  
 
