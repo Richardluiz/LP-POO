@@ -1,5 +1,10 @@
 # **Loja de Jogos PS4**
 
+## Criado Por
+
+- Richard Luiz e Felipe Araujo
+
+
 ![MALIKK](https://github.com/Richardluiz/LP-POO/assets/80009434/0912e8c9-9cde-4943-991b-466488205def)
 
 
@@ -132,6 +137,3 @@ O código é dividido em várias classes:
 - Você precisará ajustar o código de acordo com as suas necessidades específicas.
 - 
 
-## Criadores
-
-- Richard Luiz e Felipe Araujo
