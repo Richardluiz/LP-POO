@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 
 public class TelaPagamento extends JFrame {
 
@@ -22,22 +25,43 @@ public class TelaPagamento extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
+        // Cria um painel para o título e a descrição
+        JPanel painelTitulo = new JPanel(new FlowLayout(FlowLayout.CENTER));
         labelTitulo = new JLabel("Pagamento de " + produto.getNome(), SwingConstants.CENTER);
         labelTitulo.setFont(new Font("Arial", Font.BOLD, 16));
-        add(labelTitulo, BorderLayout.NORTH);
+        painelTitulo.add(labelTitulo);
+
+        // Adiciona a descrição do jogo abaixo do título
+        JLabel labelDescricao = new JLabel(produto.getCategoria());
+        painelTitulo.add(labelDescricao);
+
+        add(painelTitulo, BorderLayout.NORTH);
 
         painelOpcoes = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         btnPix = new JButton("Pix");
+        // Ação do botão "Pix"
         btnPix.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Implementar lógica para pagamento via Pix
-                JOptionPane.showMessageDialog(null, "Pagamento via Pix selecionado!");
-                // Ex: Abrir tela específica para inserir dados do Pix
-                // ...
+                // Exibe a imagem do QR Code
+                try {
+                    // Carrega a imagem do QR Code
+                    // Ajuste o caminho se necessário!
+                    BufferedImage qrCodeImage = ImageIO.read(getClass().getResource("Imagem/QrCode Pix.jpeg"));
+
+                    // Cria um JLabel para exibir a imagem
+                    JLabel labelQrCode = new JLabel(new ImageIcon(qrCodeImage));
+
+                    // Cria um JOptionPane para exibir a imagem
+                    JOptionPane.showMessageDialog(null, labelQrCode, "Pagamento via Pix", JOptionPane.INFORMATION_MESSAGE);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Erro ao carregar o QR Code.", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
+
         painelOpcoes.add(btnPix);
 
         btnBoleto = new JButton("Boleto");

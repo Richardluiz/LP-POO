@@ -11,6 +11,7 @@ public class Home extends JFrame {
     private JButton btnCarrinho;
     private JButton btnLogin;
     private List<Produto> carrinhoDeCompras = new ArrayList<>(); // Lista para armazenar os jogos no carrinho
+    private JLabel lblCarrinho; // JLabel para mostrar os itens no carrinho
 
     public Home() {
         setTitle("Loja de Jogos PS4 - Home");
@@ -30,7 +31,7 @@ public class Home extends JFrame {
         // Carregue as imagens usando ImageIcon
         ImageIcon imagemJogo1 = new ImageIcon(getClass().getResource("Imagem/Fifa 22.png"));
         ImageIcon imagemJogo2 = new ImageIcon(getClass().getResource("Imagem/Ghost of tsushima.png"));
-        ImageIcon imagemJogo3 = new ImageIcon(getClass().getResource("Imagem/GOD OF WAR RAGNAROK PS4.png"));
+        ImageIcon imagemJogo3 = new ImageIcon(getClass().getResource("Imagem/God of war Ragnarok 2.jpg"));
         ImageIcon imagemJogo4 = new ImageIcon(getClass().getResource("Imagem/Jogo-Ps4-Horizon-Forbidden-West-.png"));
 
         // Crie os labels com as imagens
@@ -89,6 +90,8 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Adiciona o jogo ao carrinho
                 carrinhoDeCompras.add(jogo1);
+                // Atualiza o JLabel do carrinho
+                updateCarrinhoLabel();
                 JOptionPane.showMessageDialog(null, "Jogo adicionado ao carrinho!");
                 updateCarrinhoButton(); // Atualiza o botão "Carrinho"
             }
@@ -116,6 +119,8 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Adiciona o jogo ao carrinho
                 carrinhoDeCompras.add(jogo2);
+                // Atualiza o JLabel do carrinho
+                updateCarrinhoLabel();
                 JOptionPane.showMessageDialog(null, "Jogo adicionado ao carrinho!");
                 updateCarrinhoButton(); // Atualiza o botão "Carrinho"
             }
@@ -143,6 +148,8 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Adiciona o jogo ao carrinho
                 carrinhoDeCompras.add(jogo3);
+                // Atualiza o JLabel do carrinho
+                updateCarrinhoLabel();
                 JOptionPane.showMessageDialog(null, "Jogo adicionado ao carrinho!");
                 updateCarrinhoButton(); // Atualiza o botão "Carrinho"
             }
@@ -170,6 +177,8 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Adiciona o jogo ao carrinho
                 carrinhoDeCompras.add(jogo4);
+                // Atualiza o JLabel do carrinho
+                updateCarrinhoLabel();
                 JOptionPane.showMessageDialog(null, "Jogo adicionado ao carrinho!");
                 updateCarrinhoButton(); // Atualiza o botão "Carrinho"
             }
@@ -218,6 +227,10 @@ public class Home extends JFrame {
         botaoPanel.add(carrinhoIcon); // Adiciona o ícone do carrinho ao painel
         botaoPanel.add(new JLabel("Loja de Jogos PS4")); // Adiciona o nome da loja ao painel
 
+        // Cria o JLabel para mostrar os itens do carrinho
+        lblCarrinho = new JLabel("Carrinho: ");
+        // Adiciona o JLabel ao botaoPanel
+        botaoPanel.add(lblCarrinho);
 
         btnCarrinho = new JButton("Carrinho");
         btnCarrinho.addActionListener(new ActionListener() {
@@ -253,6 +266,22 @@ public class Home extends JFrame {
             }
             text.append(")");
             btnCarrinho.setText(text.toString());
+        }
+    }
+
+    // Função para atualizar o JLabel do carrinho
+    private void updateCarrinhoLabel() {
+        if (carrinhoDeCompras.isEmpty()) {
+            lblCarrinho.setText("Carrinho: ");
+        } else {
+            StringBuilder text = new StringBuilder("Carrinho: ");
+            for (int i = 0; i < carrinhoDeCompras.size(); i++) {
+                text.append(carrinhoDeCompras.get(i).getNome());
+                if (i < carrinhoDeCompras.size() - 1) {
+                    text.append(", ");
+                }
+            }
+            lblCarrinho.setText(text.toString());
         }
     }
 
