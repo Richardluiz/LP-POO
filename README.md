@@ -132,6 +132,6 @@ O código é dividido em várias classes:
 - Você precisará ajustar o código de acordo com as suas necessidades específicas.
 - 
 
-## ** Criadores**
+## Criadores
 
 - Richard Luiz e Felipe Araujo
